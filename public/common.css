@@ -1,0 +1,487 @@
+/* Controles globais e tema persistente */
+html {
+  --sc-bg: #f4f6f8;
+  --sc-bg-dark: #ffffff;
+  --sc-card: #ffffff;
+  --sc-card-bg: #ffffff;
+  --sc-card-bg-hover: #f8fafc;
+  --sc-border: #e2e8f0;
+  --sc-text: #1e293b;
+  --sc-text-muted: #475569;
+  --sc-muted: #475569;
+  --sc-hint: #64748b;
+  --sc-green: #15803d;
+}
+
+html.sc-dark {
+  --sc-bg: #111111;
+  --sc-bg-dark: #181818;
+  --sc-card: #242424;
+  --sc-card-bg: #242424;
+  --sc-card-bg-hover: #2d2d2d;
+  --sc-border: #3b3b3b;
+  --sc-text: #f5f5f5;
+  --sc-text-muted: #b8b8b8;
+  --sc-muted: #b8b8b8;
+  --sc-hint: #8c8c8c;
+  --sc-green: #4ade80;
+}
+
+body {
+  transition: background-color .2s ease, color .2s ease;
+}
+
+.sc-global-controls {
+  position: relative;
+  inset: auto;
+  z-index: 20;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 8px clamp(12px, 2vw, 24px);
+  background: var(--sc-bg-dark);
+  border-bottom: 1px solid var(--sc-border);
+}
+.sc-global-btn {
+  border: 1px solid var(--sc-border);
+  background: var(--sc-card);
+  color: var(--sc-text);
+  border-radius: 6px;
+  padding: 7px 11px;
+  font: 600 12px Barlow, Arial, sans-serif;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+}
+
+.sc-global-btn:hover {
+  border-color: #f5c400;
+}
+
+html.sc-dark body,
+html.sc-dark .sc-main,
+html.sc-dark .app-container,
+html.sc-dark .sc-layout,
+html.sc-dark .sc-main-content {
+  background-color: var(--sc-bg) !important;
+  color: var(--sc-text) !important;
+}
+
+html.sc-dark input,
+html.sc-dark select,
+html.sc-dark textarea,
+html.sc-dark button.sc-btn-outline,
+html.sc-dark .sc-card,
+html.sc-dark .sc-section,
+html.sc-dark .sc-stat-card,
+html.sc-dark .sc-history-card,
+html.sc-dark .sc-card-form,
+html.sc-dark .sc-card-table,
+html.sc-dark .sc-modal,
+html.sc-dark .sc-quick-card,
+html.sc-dark .sc-agenda-item {
+  background-color: var(--sc-card) !important;
+  color: var(--sc-text) !important;
+  border-color: var(--sc-border) !important;
+}
+
+html.sc-dark .sc-topbar,
+html.sc-dark .sc-sidebar,
+html.sc-dark .sc-header,
+html.sc-dark .sc-footer {
+  background-color: var(--sc-bg-dark) !important;
+  color: var(--sc-text) !important;
+  border-color: var(--sc-border) !important;
+}
+
+html.sc-dark .sc-nav-item,
+html.sc-dark a,
+html.sc-dark label,
+html.sc-dark p,
+html.sc-dark h1,
+html.sc-dark h2,
+html.sc-dark h3,
+html.sc-dark h4,
+html.sc-dark .sc-text-muted,
+html.sc-dark .sc-muted {
+  color: var(--sc-text);
+}
+
+html.sc-dark .sc-hint,
+html.sc-dark .sc-page-sub,
+html.sc-dark .sc-section-sub,
+html.sc-dark .sc-service-desc,
+html.sc-dark .sc-agenda-detail {
+  color: var(--sc-muted) !important;
+}
+
+@media (max-width: 700px) {
+  .sc-global-controls { justify-content: stretch; gap: 8px; padding: 8px 12px; }
+  .sc-global-btn { flex: 1 1 120px; min-height: 38px; padding: 8px 10px; font-size: 12px; white-space: normal; }
+}
+
+html:not(.sc-dark) .sc-root,
+html:not(.sc-dark) .sc-root main,
+html:not(.sc-dark) body {
+  background: var(--sc-bg) !important;
+  color: var(--sc-text) !important;
+}
+
+html:not(.sc-dark) .sc-root .sc-topbar,
+html:not(.sc-dark) .sc-header,
+html:not(.sc-dark) .sc-topbar {
+  background: var(--sc-bg-dark) !important;
+  color: var(--sc-text) !important;
+}
+
+html.sc-dark .sc-root,
+html.sc-dark .sc-root main {
+  background: var(--sc-bg) !important;
+  color: var(--sc-text) !important;
+}
+
+html.sc-dark .sc-root .sc-topbar,
+html.sc-dark .sc-header,
+html.sc-dark .sc-topbar {
+  background: var(--sc-bg-dark) !important;
+}
+
+@media (min-width: 701px) {
+  .sc-global-controls { justify-content: flex-end; }
+  .sc-global-btn { flex: 0 0 auto; }
+}
+
+/* Padronização global dos temas: aplica também às páginas com CSS próprio. */
+html:not(.sc-dark) {
+  color-scheme: light;
+  --sc-bg: #f5f7fa;
+  --sc-bg-dark: #ffffff;
+  --sc-card: #ffffff;
+  --sc-card-bg: #ffffff;
+  --sc-card-bg-hover: #f1f5f9;
+  --sc-border: #dbe2ea;
+  --sc-text: #172033;
+  --sc-text-muted: #475569;
+  --sc-muted: #64748b;
+  --sc-hint: #64748b;
+}
+html.sc-dark { color-scheme: dark; }
+html:not(.sc-dark) body {
+  background-color: var(--sc-bg) !important;
+  color: var(--sc-text) !important;
+}
+html:not(.sc-dark) main,
+html:not(.sc-dark) .sc-root,
+html:not(.sc-dark) .sc-main,
+html:not(.sc-dark) .app-container,
+html:not(.sc-dark) .sc-layout,
+html:not(.sc-dark) .sc-main-content,
+html:not(.sc-dark) .container,
+html:not(.sc-dark) .main-content {
+  background-color: var(--sc-bg) !important;
+  color: var(--sc-text) !important;
+}
+html:not(.sc-dark) .sc-card,
+html:not(.sc-dark) .sc-section,
+html:not(.sc-dark) .sc-stat-card,
+html:not(.sc-dark) .sc-history-card,
+html:not(.sc-dark) .sc-card-form,
+html:not(.sc-dark) .sc-card-table,
+html:not(.sc-dark) .sc-modal,
+html:not(.sc-dark) .sc-quick-card,
+html:not(.sc-dark) .sc-agenda-item,
+html:not(.sc-dark) .card,
+html:not(.sc-dark) .modal-content,
+html:not(.sc-dark) .form-container,
+html:not(.sc-dark) .table-container {
+  background-color: var(--sc-card) !important;
+  color: var(--sc-text) !important;
+  border-color: var(--sc-border) !important;
+}
+html:not(.sc-dark) .sc-topbar,
+html:not(.sc-dark) .sc-sidebar,
+html:not(.sc-dark) .sc-header,
+html:not(.sc-dark) .sc-footer,
+html:not(.sc-dark) header,
+html:not(.sc-dark) nav {
+  background-color: #fff !important;
+  color: var(--sc-text) !important;
+  border-color: var(--sc-border) !important;
+}
+html:not(.sc-dark) input:not([type=checkbox]):not([type=radio]),
+html:not(.sc-dark) select,
+html:not(.sc-dark) textarea {
+  background-color: #fff !important;
+  color: #172033 !important;
+  border-color: #cbd5e1 !important;
+}
+html:not(.sc-dark) input::placeholder,
+html:not(.sc-dark) textarea::placeholder { color: #64748b !important; }
+html:not(.sc-dark) table th { background: #edf2f7 !important; color: #172033 !important; }
+html:not(.sc-dark) table td { color: #334155; border-color: #e2e8f0 !important; }
+html:not(.sc-dark) .sc-page-sub,
+html:not(.sc-dark) .sc-section-sub,
+html:not(.sc-dark) .sc-text-muted,
+html:not(.sc-dark) .sc-muted,
+html:not(.sc-dark) .sc-hint { color: #64748b !important; }
+
+/* ===== Stop Clean: ajustes responsivos globais ===== */
+*, *::before, *::after { box-sizing: border-box; }
+html { width: 100%; max-width: 100%; -webkit-text-size-adjust: 100%; }
+body { max-width: 100%; min-width: 0; }
+img, video, canvas, svg { max-width: 100%; height: auto; }
+input, select, textarea, button { max-width: 100%; font: inherit; }
+input, select, textarea { min-width: 0; }
+pre, code { overflow-wrap: anywhere; }
+
+@media (max-width: 1024px) {
+  .container, .container-fluid, .main-content, .content, .page-content,
+  .dashboard-content, .form-container, .auth-container, .wrapper, main {
+    max-width: 100%;
+  }
+  .container, .main-content, .content, .page-content, .dashboard-content,
+  main { padding-left: clamp(12px, 3vw, 24px); padding-right: clamp(12px, 3vw, 24px); }
+  .row { flex-wrap: wrap; }
+  .grid, .cards-grid, .services-grid, .vehicles-grid, .stats-grid,
+  .form-grid, .dashboard-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  table { max-width: 100%; }
+}
+
+@media (max-width: 768px) {
+  body { overflow-x: hidden; }
+  .container, .container-fluid, .main-content, .content, .page-content,
+  .dashboard-content, .form-container, .auth-container, .wrapper, main {
+    width: 100%; max-width: 100%; margin-left: auto; margin-right: auto;
+    padding-left: 14px; padding-right: 14px;
+  }
+  header, .header, .topbar, .navbar, .nav-bar, .header-content {
+    flex-wrap: wrap; gap: 10px; height: auto; min-height: 0;
+  }
+  nav, .navbar-nav, .nav-links { flex-wrap: wrap; max-width: 100%; }
+  .sidebar { width: 100%; max-width: 100%; height: auto; position: static; }
+  .layout, .app-layout, .dashboard-layout, .main-layout {
+    display: flex; flex-direction: column; width: 100%; min-width: 0;
+  }
+  .main, .main-content, .content-area { width: 100%; min-width: 0; margin-left: 0; }
+  .grid, .cards-grid, .services-grid, .vehicles-grid, .stats-grid,
+  .form-grid, .dashboard-grid, .row-cols-2, .row-cols-3, .row-cols-4 {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+  .card, .panel, .form-card, .section, .stat-card, .service-card,
+  .vehicle-card { min-width: 0; max-width: 100%; }
+  form, .form, .form-row, .form-group, .input-group { min-width: 0; max-width: 100%; }
+  .form-row, .form-inline { display: flex; flex-direction: column; }
+  .form-group, .form-field, .input-group { width: 100%; }
+  input, select, textarea { width: 100%; min-height: 42px; }
+  textarea { min-height: 100px; }
+  button, .btn, input[type="submit"], input[type="button"] {
+    min-height: 42px; white-space: normal; overflow-wrap: anywhere;
+  }
+  .actions, .form-actions, .button-group, .btn-group {
+    display: flex; flex-wrap: wrap; gap: 10px; width: 100%;
+  }
+  .actions > *, .form-actions > *, .button-group > *, .btn-group > * {
+    flex: 1 1 140px; min-width: 0;
+  }
+  .table-responsive, .table-container, .table-wrapper, .overflow-x-auto {
+    display: block; width: 100%; max-width: 100%; overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  table { width: 100%; min-width: 600px; }
+  .modal, .modal-dialog, .dialog, .popup {
+    width: calc(100% - 24px) !important; max-width: 560px; max-height: 90vh;
+    overflow-y: auto; margin: 12px auto;
+  }
+  .modal-content { max-width: 100%; }
+  h1 { font-size: clamp(1.5rem, 6vw, 2.2rem); overflow-wrap: anywhere; }
+  h2 { font-size: clamp(1.25rem, 5vw, 1.8rem); }
+  .hero, .hero-content, .hero-section { min-height: 0; padding-top: 36px; padding-bottom: 36px; }
+  .hero-content, .hero-inner { flex-direction: column; align-items: stretch; }
+  footer, .footer { flex-wrap: wrap; gap: 10px; height: auto; padding: 16px; }
+}
+
+@media (max-width: 480px) {
+  .container, .container-fluid, .main-content, .content, .page-content,
+  .dashboard-content, .form-container, .auth-container, .wrapper, main {
+    padding-left: 10px; padding-right: 10px;
+  }
+  .card, .panel, .form-card, .section, .stat-card { padding: 14px !important; }
+  .actions, .form-actions, .button-group, .btn-group { flex-direction: column; }
+  .actions > *, .form-actions > *, .button-group > *, .btn-group > * { width: 100%; flex-basis: auto; }
+  .modal, .modal-dialog, .dialog, .popup { width: calc(100% - 16px) !important; }
+  th, td { padding: 8px; }
+  .logo, .brand img { max-width: min(170px, 55vw); }
+}
+
+
+/* =========================================================
+   CONTROLES GLOBAIS — CORREÇÃO DEFINITIVA PARA CELULAR
+   ========================================================= */
+.sc-global-controls {
+  position: relative !important;
+  inset: auto !important;
+  float: none !important;
+  clear: both !important;
+  z-index: 100 !important;
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  align-self: stretch !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 54px !important;
+  max-height: none !important;
+  margin: 0 !important;
+  padding: 8px 16px !important;
+  gap: 8px !important;
+  overflow: visible !important;
+  transform: none !important;
+}
+
+.sc-global-controls .sc-global-btn {
+  position: static !important;
+  float: none !important;
+  flex: 0 1 auto !important;
+  width: auto !important;
+  min-width: 100px !important;
+  max-width: 100% !important;
+  min-height: 38px !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 8px 12px !important;
+  white-space: normal !important;
+  overflow-wrap: anywhere !important;
+  word-break: normal !important;
+  text-align: center !important;
+  line-height: 1.15 !important;
+}
+
+@media (max-width: 600px) {
+  .sc-global-controls {
+    justify-content: stretch !important;
+    align-items: stretch !important;
+    min-height: 0 !important;
+    padding: 8px 10px !important;
+    gap: 8px !important;
+  }
+
+  .sc-global-controls .sc-global-btn {
+    flex: 1 1 0 !important;
+    width: 0 !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    min-height: 42px !important;
+    padding: 9px 8px !important;
+    font-size: 12px !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .sc-global-controls {
+    flex-direction: column !important;
+  }
+
+  .sc-global-controls .sc-global-btn {
+    width: 100% !important;
+    flex: 0 0 auto !important;
+  }
+}
+
+
+/* Correção de layout: cabeçalho e controles globais sempre ocupam linhas distintas */
+.sc-topbar,
+.sc-header,
+header.sc-topbar {
+  position: relative !important;
+  inset: auto !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  transform: none !important;
+  width: 100%;
+  min-width: 0;
+  height: auto !important;
+  min-height: 56px;
+  flex-shrink: 0;
+  z-index: 1 !important;
+}
+.sc-global-controls {
+  position: relative !important;
+  display: flex !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  clear: both !important;
+  float: none !important;
+  inset: auto !important;
+  transform: none !important;
+  z-index: 2 !important;
+}
+.sc-global-controls .sc-global-btn {
+  position: static !important;
+  transform: none !important;
+}
+@media (max-width: 768px) {
+  .sc-topbar,
+  .sc-header,
+  header.sc-topbar {
+    display: flex !important;
+    flex-direction: row;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 10px !important;
+    padding: 10px 14px !important;
+  }
+  .sc-topbar .sc-logo,
+  .sc-header .sc-logo {
+    flex: 0 1 auto;
+    min-width: 0;
+  }
+  .sc-topbar .sc-topbar-actions,
+  .sc-topbar .sc-nav,
+  .sc-header .sc-topbar-actions,
+  .sc-header .sc-nav {
+    position: static !important;
+    display: flex !important;
+    flex: 1 1 100%;
+    flex-wrap: wrap !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    gap: 8px !important;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 !important;
+    transform: none !important;
+  }
+  .sc-topbar .sc-topbar-actions > *,
+  .sc-topbar .sc-nav > *,
+  .sc-header .sc-topbar-actions > *,
+  .sc-header .sc-nav > * {
+    max-width: 100%;
+    white-space: normal;
+  }
+  .sc-global-controls {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    justify-content: stretch !important;
+    align-items: stretch !important;
+    min-height: 0 !important;
+    padding: 8px 10px !important;
+    gap: 8px !important;
+  }
+  .sc-global-controls .sc-global-btn {
+    flex: 1 1 120px !important;
+    width: auto !important;
+    min-width: 0 !important;
+    min-height: 42px !important;
+    max-width: 100% !important;
+  }
+}
